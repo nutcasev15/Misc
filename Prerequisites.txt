@@ -1,0 +1,20 @@
+Important Commands to execute:
+a).bashrc setup
+b) don't forget to install amd64 versions of 32 bit libs
+Then do these:
+
+Build prerequisites:
+git subversion libmpc-dev libmpfr-dev libgmp-dev python-dev texinfo libisl-dev phablet-tools /
+automake perl libcloog-isl-dev git-core gnupg flex bison gperf build-essential gcc-4.8-multilib /
+zip curl zlib1g-dev gcc-multilib g++-multilib libc6-dev libtool libz-dev autogen /
+lib32ncurses5-dev x11proto-core-dev libx11-dev lib32z-dev ccache glibc-2.19/
+libgl1-mesa-dev libxml2-utils xsltproc unzip default-jre default-jdk pigz gdb /
+
+ROM build:
+
+sudo apt-get install bison build-essential curl flex git gnupg gperf libesd0-dev libncurses5-dev libsdl1.2-dev libwxgtk2.8-dev \
+libxml2 libxml2-utils lzop openjdk-6-jdk openjdk-6-jre pngcrush schedtool squashfs-tools xsltproc zip zlib1g-dev g++-multilib \
+gcc-multilib lib32ncurses5-dev lib32readline-gplv2-dev lib32z1-dev openjdk-7-jdk android androidsdk-uiautomatorviewer \
+android-copyright android-src-vendor android-emulator android-tools-adb android-headers \
+android-tools-adbd androidsdk-ddms android-tools-fastboot androidsdk-hierarchyviewer android-tools-fsutils \
+androidsdk-traceview yasm \
