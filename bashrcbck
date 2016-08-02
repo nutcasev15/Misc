@@ -122,6 +122,6 @@ export tr=x86_64-linux-gnu
 export ARCH=x86_64
 export CROSS_COMPILE=x86_64-linux-gnu-
 export CCOMPILE=$CROSS_COMPILE
-export PATH=/usr/lib/ccache:/mnt/d/Linaro-TC/bin:$PATH
+export PATH=/usr/lib/ccache:/mnt/d/Nexus/Documents/TC/bin:$PATH
 eval "$(ssh-agent -s)"
 clear

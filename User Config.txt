@@ -7,14 +7,14 @@ Naming Convention:>> ReleaseGRP/v/<version(dotless)><optional release date> ****
 
 Binutils:
 
---target=x86_64-linux-gnu  --with-tune=intel --with-arch=x86-64 --with-fpmath=sse --enable-lto --enable-multilib-list=m32,mx32,m64
+--target=x86_64-linux-gnu  --with-tune=intel --with-arch=x86-64 --with-fpmath=sse --enable-lto --enable-multilib-list=m32,mx32,m64 --enable-multiarch
 
 --enable-plugins  --program-transform-name='s&^&x86_64-linux-&' --with-sysroot=/ --with-isysroot=/mnt/d --prefix=/mnt/d/x/TC
 
 TCa [VERSION variable]:
---build=x86_64-linux-gnu --target=x86_64-linux-gnu --with-gcc-version=$x --with-cloog --with-isl --with-newlib --with-ppl  --disable-headers
+--build=x86_64-linux-gnu --target=x86_64-linux-gnu --with-gcc-version=$x --with-cloog --with-isl --with-newlib --with-ppl  --disable-shared
 
---enable-languages=c,c++ --enable-graphite=yes --enable-plugins --enable-gold=default --disable-option-checking --#with-gold-version=gnu
+--enable-languages=c,c++ --enable-graphite=yes --enable-plugins --enable-gold=default --disable-option-checking --disable-headers
 
 --disable-bootstrap --enable-threads --with-fpmath=sse --disable-nls --with-gnu-as --with-gnu-ld --enable-lto --enable-multiarch
 
@@ -33,12 +33,12 @@ Newlib:
 TCb [VERSION variable, Execute name change loop]:
 --build=x86_64-linux-gnu --target=x86_64-linux-gnu --with-gcc-version=$x --with-cloog --with-isl --with-ppl --with-newlib --disable-libssp
 
---enable-languages=c,c++ --enable-graphite=yes --enable-plugins --enable-gold=default --disable-option-checking --with-gold-version=gnu
+--enable-languages=c,c++ --enable-graphite=yes --enable-plugins --enable-gold=default --disable-option-checking
 
 --disable-bootstrap --enable-threads --with-fpmath=sse --disable-nls --with-gnu-as --with-gnu-ld --enable-lto --enable-multiarch
 
---with-host-libstdcxx='-static-libgcc -Wl,-Bstatic,-lstdc++,-Bdynamic -lm' "--enable-eh-frame-hdr-for-static" --enable-initfini-array  --program-transform-name='s&^&x86_64-linux-&'
+--with-host-libstdcxx='-static-libgcc -Wl,-Bstatic,-lstdc++,-Bdynamic -lm' --enable-eh-frame-hdr-for-static --enable-initfini-array  --program-transform-name='s&^&x86_64-linux-&'
 
---with-arch=x86-64 --with-tune=intel --enable-shared --with-sysroot=/mnt/d/x/sys --enable-multilib-list=m32,mx32,m64 --with-sysroot=/ --with-isysroot=/mnt/d
+--with-arch=x86-64 --with-tune=intel --disable-shared --enable-multilib-list=m32,mx32,m64 --with-sysroot=/ --with-isysroot=/mnt/d
 
 --enable-cloog-backend=isl --prefix=/mnt/d/x/TCa
