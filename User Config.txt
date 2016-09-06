@@ -16,7 +16,7 @@ TCa [VERSION variable]:
 
 --enable-languages=c,c++ --enable-graphite=yes --enable-plugins --enable-gold=default --disable-option-checking --disable-headers
 
---disable-bootstrap --enable-threads --with-fpmath=sse --disable-nls --with-gnu-as --with-gnu-ld --enable-lto --enable-multiarch
+--disable-bootstrap --enable-threads --with-fpmath=sse --disable-nls --with-gnu-as --with-gnu-ld --enable-lto --enable-multiarch --with-diagnostics-color=always
 
 --with-host-libstdcxx='-static-libgcc -Wl,-Bstatic,-lstdc++,-Bdynamic -lm' --enable-eh-frame-hdr-for-static --enable-initfini-array  --program-transform-name='s&^&x86_64-linux-&'
 
@@ -35,7 +35,7 @@ TCb [VERSION variable, Execute name change loop]:
 
 --enable-languages=c,c++ --enable-graphite=yes --enable-plugins --enable-gold=default --disable-option-checking
 
---disable-bootstrap --enable-threads --with-fpmath=sse --disable-nls --with-gnu-as --with-gnu-ld --enable-lto --enable-multiarch
+--disable-bootstrap --enable-threads --with-fpmath=sse --disable-nls --with-gnu-as --with-gnu-ld --enable-lto --enable-multiarch --with-diagnostics-color=always
 
 --with-host-libstdcxx='-static-libgcc -Wl,-Bstatic,-lstdc++,-Bdynamic -lm' --enable-eh-frame-hdr-for-static --enable-initfini-array  --program-transform-name='s&^&x86_64-linux-&'
 
