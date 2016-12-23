@@ -8,11 +8,11 @@
 sudo apt-get update
 sudo apt-get upgrade
 sudo apt-get -y install git subversion libmpc-dev libmpfr-dev libgmp-dev python-dev texinfo libisl-dev phablet-tools \
-automake perl libcloog-isl-dev git-core gnupg flex bison gperf build-essential gcc-4.8-multilib \
-zip curl zlib1g-dev gcc-multilib g++-multilib libc6-dev libtool libz-dev autogen pigz \
-lib32ncurses5-dev x11proto-core-dev libx11-dev lib32z-dev ccache glibc-2.19 liblz4-tool \
+automake perl libcloog-isl-dev git-core gnupg flex bison gperf build-essential \
+zip curl zlib1g-dev gcc-multilib g++-multilib libc6-dev libtool autogen pigz \
+lib32ncurses5-dev x11proto-core-dev libx11-dev ccache liblz4-tool \
 libgl1-mesa-dev libxml2-utils xsltproc unzip default-jre default-jdk pigz gdb \
-pngcrush schedtool squashfs-tools lib32readline-gplv2-dev lib32z1-dev libreadline-gplv2-dev \
+pngcrush schedtool squashfs-tools readline-common lib32z1-dev \
 android-headers yasm
 echo "Setting .bashrc"
 rm -f ~/.bashrc ~/.gitconfig
