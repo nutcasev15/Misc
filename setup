@@ -6,7 +6,7 @@
 #
 #Build prerequisites:
 sudo apt-get update
-sudo apt-get upgrade
+sudo apt-get -y upgrade
 sudo apt-get -y install git subversion libmpc-dev libmpfr-dev libgmp-dev python-dev texinfo libisl-dev phablet-tools \
 automake perl libcloog-isl-dev git-core gnupg flex bison gperf build-essential \
 zip curl zlib1g-dev gcc-multilib g++-multilib libc6-dev libtool autogen pigz \

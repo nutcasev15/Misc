@@ -1,0 +1,68 @@
+#bin/bash
+git_rebase(){
+if [[ -z "$1" ]] && [[ -z "$2" ]] && [[ -z "$3" ]]
+then
+	printf "\nPlease enter the branch, remote & remote's branch you want to rebase on\n"
+	return
+else
+	export L=$1
+	export R=$2
+	export RB=$3
+	ssh-add
+	find .  -maxdepth 2 -type d -name .git -execdir bash -c 'git fetch $R && git checkout $B && git rebase $R/$RB' ';'
+	ssh-add -d
+	printf "\nDone\n"
+	unset L R RB
+	return
+fi
+}
+git_update(){
+if [[ -z "$1" ]] && [[ -z "$2" ]] && [[ -z "$3" ]]
+then
+	printf "\nPlease enter the branch you want to sync & the remote & remote branch\n"
+	return
+else
+	export L=$1
+	export R=$2
+	export RB=$3
+	ssh-add
+	find .  -maxdepth 2 -type d -name .git -execdir bash -c 'git fetch $R && git checkout $R/$RB && git checkout -B $L' ';'
+	ssh-add -d
+	printf "\nDone\n"
+	unset L R RB
+	return
+fi
+}
+git_push(){
+if [[ -z "$1" ]] && [[ -z "$2" ]]
+then
+	printf "\nPlease enter the remote & branch\n"
+	return
+else
+	export B=$1
+	export R=$2
+	ssh-add
+	printf "\nChecking Out $B\n"
+	find .  -maxdepth 2 -type d -name .git -execdir bash -c 'git push -fu $R $B' ';'
+	ssh-add -d
+	printf "\nDone\n"
+	unset B R
+	return
+fi
+}
+git_checkout(){
+if [[ -z "$1" ]]
+then
+	printf "\nPlease enter the branch\n"
+	return
+else
+	export B=$1
+	ssh-add
+	printf "\nChecking Out $B\n"
+	find .  -maxdepth 2 -type d -name .git -execdir bash -c 'git checkout $B' ';'
+	ssh-add -d
+	printf "\nDone\n"
+	unset B
+	return
+fi
+}
