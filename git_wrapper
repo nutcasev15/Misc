@@ -57,10 +57,8 @@ then
 	return
 else
 	export B=$1
-	ssh-add
 	printf "\nChecking Out $B\n"
 	find .  -maxdepth 2 -type d -name .git -execdir bash -c 'git checkout $B' ';'
-	ssh-add -d
 	printf "\nDone\n"
 	unset B
 	return
