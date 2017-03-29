@@ -2,7 +2,7 @@
 git_rebase(){
 if [[ -z "$1" ]] && [[ -z "$2" ]] && [[ -z "$3" ]]
 then
-	printf "\nPlease enter the branch, remote & remote's branch you want to rebase on\n"
+	printf "\nFunction requires the Branch, Remote & Remote's branch you want to Rebase on\n"
 	return
 else
 	export L=$1
@@ -19,7 +19,7 @@ fi
 git_update(){
 if [[ -z "$1" ]] && [[ -z "$2" ]] && [[ -z "$3" ]]
 then
-	printf "\nPlease enter the branch you want to sync & the remote & remote branch\n"
+	printf "\nFunction requires the Branch you want to sync, the Remote & Remote branch\n"
 	return
 else
 	export L=$1
@@ -36,7 +36,7 @@ fi
 git_push(){
 if [[ -z "$1" ]] && [[ -z "$2" ]]
 then
-	printf "\nPlease enter the remote & branch\n"
+	printf "\nFunction requires the Remote & Branch\n"
 	return
 else
 	export B=$1
@@ -53,7 +53,7 @@ fi
 git_checkout(){
 if [[ -z "$1" ]]
 then
-	printf "\nPlease enter the branch\n"
+	printf "\nFunction requires the Branch\n"
 	return
 else
 	export B=$1
@@ -63,4 +63,34 @@ else
 	unset B
 	return
 fi
+}
+git_forall(){
+if [[ -z "$2" && -z "$1" ]]
+then
+	printf "\nNo Command Specified or Command not Enclosed in Quotes\n"
+	return
+elif [[ -z "$2" ]]
+then
+	export C=$1
+	find .  -maxdepth 2 -type d -name .git -execdir bash -c '$C' ';'
+	printf "\nDone\n"
+	unset C
+	return
+else
+	printf "\nNo Command Specified or Command not Enclosed in Quotes\n"
+	return
+fi
+}
+wrapper_help(){
+printf "#### Command List With Syntax ####\nAll Commands affect Repos in Current Directory\n"
+printf "\n>  git_rebase:"
+git_rebase
+printf "\n>  git_update:"
+git_update
+printf "\n>  git_push:"
+git_push
+printf "\n>  git_checkout:"
+git_checkout
+printf "\n>  git_forall:\n"
+printf "Function requires a Command to Execute on Repositories\n"
 }

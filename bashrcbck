@@ -116,12 +116,13 @@ fi
 ccache -F 0 && ccache -M 25
 export USE_CCACHE=1
 export CCACHE_DIR=/mnt/d/Nexus/Dev/.ccache
-ccache -C -z
+ccache -Cz
 export pr=/mnt/d
 export tr=x86_64-linux-gnu
 export ARCH=x86_64
-export CROSS_COMPILE=x86_64-linux-gnu-
+export CROSS_COMPILE=x86_64-linux-
 export CCOMPILE=$CROSS_COMPILE
 export PATH=/usr/lib/ccache:/mnt/d/Nexus/Documents/TC/bin:$PATH
 eval "$(ssh-agent -s)"
+source $pr/Nexus/Dev/guides/git_wrapper
 clear

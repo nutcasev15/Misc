@@ -1,3 +1,5 @@
 [user]
 	email = tab.andsupp@gmail.com
 	name = nutcasev15
+[push]
+	default = simple
