@@ -14,9 +14,11 @@ Binutils:
 TCa [VERSION variable]:
 --build=x86_64-linux-gnu --target=x86_64-linux-gnu --with-gcc-version=$x --with-cloog --with-isl --with-newlib --with-ppl  --disable-shared
 
---enable-languages=c,c++ --enable-graphite=yes --enable-plugins --enable-gold=default --disable-option-checking --disable-headers
+--enable-languages=c,c++ --enable-graphite=yes --enable-plugins --enable-gold=default --disable-option-checking --disable-headers --disable-bootstrap
 
---disable-bootstrap --enable-threads --with-fpmath=sse --disable-nls --with-gnu-as --with-gnu-ld --enable-lto --enable-multiarch --with-diagnostics-color=always
+--enable-threads --enable-gnu-indirect-function --disable-libcilkrts --disable-libsanitizer --with-fpmath=sse --disable-nls
+
+--with-gnu-as --with-gnu-ld --enable-lto --enable-multiarch --with-diagnostics-color=always --enable-libatomic-ifuncs=no
 
 --with-host-libstdcxx='-static-libgcc -Wl,-Bstatic,-lstdc++,-Bdynamic -lm' --enable-eh-frame-hdr-for-static --enable-initfini-array  --program-transform-name='s&^&x86_64-linux-&'
 
@@ -33,9 +35,11 @@ Newlib:
 TCb [VERSION variable, Execute name change loop]:
 --build=x86_64-linux-gnu --target=x86_64-linux-gnu --with-gcc-version=$x --with-cloog --with-isl --with-ppl --with-newlib --disable-libssp
 
---enable-languages=c,c++ --enable-graphite=yes --enable-plugins --enable-gold=default --disable-option-checking
+--enable-languages=c,c++ --enable-graphite=yes --enable-plugins --enable-gold=default --disable-option-checking --enable-libatomic-ifuncs=no
 
---disable-bootstrap --enable-threads --with-fpmath=sse --disable-nls --with-gnu-as --with-gnu-ld --enable-lto --enable-multiarch --with-diagnostics-color=always
+--disable-bootstrap --enable-threads --enable-gnu-indirect-function --disable-libcilkrts --disable-libsanitizer
+
+--with-fpmath=sse --disable-nls --with-gnu-as --with-gnu-ld --enable-lto --enable-multiarch --with-diagnostics-color=always
 
 --with-host-libstdcxx='-static-libgcc -Wl,-Bstatic,-lstdc++,-Bdynamic -lm' --enable-eh-frame-hdr-for-static --enable-initfini-array  --program-transform-name='s&^&x86_64-linux-&'
 
