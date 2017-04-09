@@ -45,14 +45,14 @@ then
 	printf "\nFunction requires the Remote & Branch\n"
 	return
 else
-	export B=$1
-	export R=$2
+	export R=$1
+	export B=$2
 	ssh-add
 	printf "\nChecking Out $B\n"
 	find .  -maxdepth $FDEPTH -type d -name .git -execdir bash -c 'git push -fu $R $B' ';'
 	ssh-add -d
 	printf "\nDone\n"
-	unset B R
+	unset R B
 	return
 fi
 }
