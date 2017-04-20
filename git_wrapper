@@ -46,6 +46,20 @@ else
 fi
 }
 
+git_patch(){
+if [[ -z "$1" ]] && [[ -z "$2" ]]
+then
+	printf "\nFunction requires the Remote URL & Commit's Full SHA ID\n"
+	return
+else
+	export S=$1
+	export ID=$2
+	curl -Ss https://github.com/"$S"/commit/"$ID".patch | git am -3
+	unset S ID
+	return
+fi
+}
+
 git_push(){
 if [[ -z "$1" ]] && [[ -z "$2" ]]
 then
@@ -134,7 +148,7 @@ export -f add_repo
 git_manifesto(){
 init_manifest
 find .  -maxdepth 2 -type d -name .git -execdir bash -c "add_repo" ';'
-printf "\n ##### Warning: This Program is only Meant to Create a Manifest #####\n ##### Give it Some Love Afterwards ##### \n\n"
+printf "\n ##### Warning: This Program is Only Meant to Create a Manifest #####\n ##### Give it Some Love Afterwards ##### \n\n"
 echo '' >> manifest_autogen.xml
 echo "</manifest>" >> manifest_autogen.xml
 }
@@ -148,7 +162,9 @@ printf "\n#### Command List With Syntax ####\nAll Commands affect Repos in Curre
 printf "\n>  git_rebase:"
 printf "\nFunction requires the Branch, Remote & Remote's branch you want to Rebase on\n"
 printf "\n>  git_update:"
-printf "\nFunction requires the Branch you want to Sync, the Remote & Remote branch\n"
+printf "\nFunction requires the Branch you Want to Sync, the Remote & Remote branch\n"
+printf "\n>  git_patch:"
+printf "\nFunction requires the Remote URL & Commit's Full SHA ID\n"
 printf "\n>  git_push:"
 printf "\nFunction requires the Remote & Branch\n"
 printf "\n>  git_checkout:"
