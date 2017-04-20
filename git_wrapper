@@ -1,6 +1,7 @@
 #bin/bash
 # Global Function Depth
 export FDEPTH=2
+# Global Script Awareness Variable 'WSI' must be Defined to Allow Scripts to Call These Methods
 # Automation Methods Begin
 
 git_rebase(){
@@ -14,7 +15,10 @@ else
 	export RB=$3
 	ssh-add
 	find .  -maxdepth $FDEPTH -type d -name .git -execdir bash -c 'git fetch $R && git checkout -qf $B && git rebase $R/$RB' ';'
-	ssh-add -d
+	if [[ -z "$WSI" ]]
+	then 
+		ssh-add -d
+	fi
 	printf "\nDone\n"
 	unset L R RB
 	return
@@ -32,7 +36,10 @@ else
 	export RB=$3
 	ssh-add
 	find .  -maxdepth $FDEPTH -type d -name .git -execdir bash -c 'git fetch $R && git checkout -qf $R/$RB && git checkout -fB $L' ';'
-	ssh-add -d
+	if [[ -z "$WSI" ]]
+	then 
+		ssh-add -d
+	fi
 	printf "\nDone\n"
 	unset L R RB
 	return
@@ -50,7 +57,10 @@ else
 	ssh-add
 	printf "\nChecking Out $B\n"
 	find .  -maxdepth $FDEPTH -type d -name .git -execdir bash -c 'git checkout -fq $B && git push -fu $R $B' ';'
-	ssh-add -d
+	if [[ -z "$WSI" ]]
+	then 
+		ssh-add -d
+	fi
 	printf "\nDone\n"
 	unset R B
 	return
