@@ -110,7 +110,6 @@ echo '' >> manifest_autogen.xml
 echo "<manifest>" >> manifest_autogen.xml
 echo '' >> manifest_autogen.xml
 echo '<remote name="github_gen" fetch="https://github.com/" />' >> manifest_autogen.xml
-echo '' >> manifest_autogen.xml
 }
 
 add_repo(){
@@ -124,6 +123,8 @@ then
 else
 	export S="$(echo $URL | grep -o "git@github.com:.*" | cut -f2 -d:)"
 fi
+echo -e '' >> ../manifest_autogen.xml
+echo -e "<remove-project path=\"<ROMNAME>/"$(basename "$PWD")"\" />" >> ../manifest_autogen.xml
 echo -e "<project path=\"$(basename "$PWD")\" name=\"$S\" remote=\"github_gen\" revision=\"$(git branch --points-at HEAD | cut -d ' ' -f2)\" />" >> ../manifest_autogen.xml
 unset S URL
 }
