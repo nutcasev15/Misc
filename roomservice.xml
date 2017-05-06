@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+
+  <remove-project name="LineageOS/android_vendor_cm" />
+  <remove-project name="LineageOS/cm_platform_sdk" />
+  <remove-project name="LineageOS/android_build" />
+  <remove-project name="LineageOS/android_frameworks_base" />
+  <remove-project name="LineageOS/android_frameworks_native" />
+  <remove-project name="LineageOS/android_system_sepolicy" />
+  <remove-project name="LineageOS/android_packages_apps_Contacts" />
+  <remove-project name="LineageOS/android_packages_apps_ContactsCommon" />
+  <remove-project name="LineageOS/android_packages_apps_Settings" />
+  <remove-project name="LineageOS/android_packages_apps_ExactCalculator" />
+  <remove-project name="LineageOS/android_packages_apps_PhoneCommon" />
+  <remove-project name="LineageOS/android_packages_apps_Dialer" />
+  <remove-project name="LineageOS/android_packages_apps_CMParts" />
+
+  <project path="build" name="nutcasev15/android_build" revision="OPT">
+    <copyfile src="core/root.mk" dest="Makefile" />
+  </project>
+  <project name="nutcasev15/android_vendor_cm" path="vendor/cm" remote="github" revision="OPT" />
+  <project name="nutcasev15/cm_platform_sdk" path="vendor/cmsdk" remote="github" revision="OPT" />
+  <project name="LineageOS/android_device_asus_Z00A" path="device/asus/Z00A" remote="github" />
+  <project name="LineageOS/android_device_asus_Z008" path="device/asus/Z008" remote="github" />
+  <project name="nutcasev15/android_device_asus_mofd-common" path="device/asus/mofd-common" remote="github" revision="OPT" />
+  <project name="nutcasev15/Hololite" path="kernel/asus/moorefield" remote="github" revision="v4" />
+  <project name="TheMuppets/proprietary_vendor_asus" path="vendor/asus" remote="github" revision="cm-14.1" />
+  <project name="LineageOS/android_packages_apps_FlipFlap" path="packages/apps/FlipFlap" remote="github" />
+  <project name="LineageOS/android_packages_resources_devicesettings" path="packages/resources/devicesettings" remote="github" />
+  <project name="LineageOS/android_external_stlport" path="external/stlport" remote="github" />
+  <project path="frameworks/base" name="nutcasev15/android_frameworks_base" groups="pdk-cw-fs,pdk-fs" revision="OPT" />
+  <project path="frameworks/native" name="nutcasev15/android_frameworks_native" groups="pdk" revision="OPT" />
+  <project path="system/sepolicy" name="nutcasev15/android_system_sepolicy" groups="pdk" revision="OPT" />
+  <project path="packages/apps/Contacts" name="nutcasev15/android_packages_apps_Contacts" groups="pdk-fs" revision="OPT" />
+  <project path="packages/apps/ContactsCommon" name="nutcasev15/android_packages_apps_ContactsCommon" groups="pdk-fs" revision="OPT" />
+  <project path="packages/apps/ExactCalculator" name="nutcasev15/android_packages_apps_ExactCalculator" groups="pdk-fs" revision="OPT" />
+  <project path="packages/apps/PhoneCommon" name="nutcasev15/android_packages_apps_PhoneCommon" groups="pdk-cw-fs,pdk-fs" revision="OPT" />
+  <project path="packages/apps/Dialer" name="nutcasev15/android_packages_apps_Dialer" groups="pdk-fs" revision="OPT" />
+  <project path="packages/apps/Settings" name="nutcasev15/android_packages_apps_Settings" groups="pdk-fs" revision="OPT" />
+  <project path="packages/apps/CMParts" name="nutcasev15/android_packages_apps_CMParts" groups="pdk-fs" revision="OPT" />
+  <project path="packages/apps/ThemeInterfacer" name="substratum/interfacer" revision="n-rootless" />
+  <project path="tools/IAZ" name="nutcasev15/IAZ" revision="Z00X_lineage" />
+</manifest>
