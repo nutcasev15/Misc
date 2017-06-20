@@ -60,6 +60,31 @@ else
 fi
 }
 
+git_cherry(){
+if [[ -z "$1" ]]
+then
+	printf "\nFunction requires Commit Chunks in <sha_start>^..<sha_end> Format\n"
+	return
+else
+	while true
+	do
+		if [[ -z "$1" ]]
+		then
+			break
+		else
+			git cherry-pick "$1"
+			if [[ "$?" != "0" ]]
+			then
+				break
+			fi
+			printf "\n $1 Picking Complete\n\n"
+		fi
+	shift 1
+	done
+	return
+fi
+}
+
 git_push(){
 if [[ -z "$1" ]] && [[ -z "$2" ]]
 then
@@ -163,8 +188,6 @@ printf "\n>  git_rebase:"
 printf "\nFunction requires the Branch, Remote & Remote's branch you want to Rebase on\n"
 printf "\n>  git_update:"
 printf "\nFunction requires the Branch you Want to Sync, the Remote & Remote branch\n"
-printf "\n>  git_patch:"
-printf "\nFunction requires the Remote URL & Commit's Full SHA ID\n"
 printf "\n>  git_push:"
 printf "\nFunction requires the Remote & Branch\n"
 printf "\n>  git_checkout:"
@@ -172,5 +195,10 @@ printf "\nFunction requires the Branch\n"
 printf "\n>  git_forall:\n"
 printf "Function requires a Command to Execute on Repositories\n"
 printf "\n>  git_manifesto:\n"
-printf "Creates a Github Manifest for Repos in Current Directory\n\n"
+printf "Creates a Github Manifest for Repos in Current Directory\n"
+printf "\n >>>These Commands Affect Current Directory Only<<< \n"
+printf "\n>  git_patch:"
+printf "\nFunction requires the Remote URL & Commit's Full SHA ID\n"
+printf "\n>  git_cherry:"
+printf "\nFunction requires Commit Chunks in <sha_start>^..<sha_end> Format\n\n"
 }
