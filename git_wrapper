@@ -14,7 +14,7 @@ else
 	export R=$2
 	export RB=$3
 	ssh-add
-	find .  -maxdepth $FDEPTH -type d -name .git -execdir bash -c 'git fetch $R && git checkout -qf $B && git rebase $R/$RB' ';'
+	find .  -maxdepth $FDEPTH -type d -name .git -execdir bash -c 'git fetch $R && git checkout -qf $L && git rebase $R/$RB' ';'
 	if [[ -z "$WSI" ]]
 	then 
 		ssh-add -d
@@ -81,6 +81,19 @@ else
 		fi
 	shift 1
 	done
+	return
+fi
+}
+
+git_show() {
+if [[ -z "$1" ]]
+then
+	printf "\nFunction requires The Query in Quotes\n"
+	return
+else
+	export Q=$1
+	git show $(git log --grep="$Q" --pretty=format:%h) --oneline
+	unset Q
 	return
 fi
 }
@@ -200,5 +213,7 @@ printf "\n >>>These Commands Affect Current Directory Only<<< \n"
 printf "\n>  git_patch:"
 printf "\nFunction requires the Remote URL & Commit's Full SHA ID\n"
 printf "\n>  git_cherry:"
-printf "\nFunction requires Commit Chunks in <sha_start>^..<sha_end> Format\n\n"
+printf "\nFunction requires Commit Chunks in <sha_start>^..<sha_end> Format\n"
+printf "\n>  git_show:"
+printf "\nFunction requires The Query in Quotes\n\n"
 }
