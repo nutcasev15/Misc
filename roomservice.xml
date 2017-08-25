@@ -39,5 +39,5 @@
   <project path="packages/apps/Settings" name="nutcasev15/android_packages_apps_Settings" groups="pdk-fs" revision="OPT" />
   <project path="packages/apps/CMParts" name="nutcasev15/android_packages_apps_CMParts" groups="pdk-fs" revision="OPT" />
   <project path="packages/apps/ThemeInterfacer" name="substratum/interfacer" revision="n-rootless" />
-  <project path="tools/IAZ" name="nutcasev15/IAZ" revision="Z00X_lineage" />
+  <project path="tools/IAZ" name="nutcasev15/IAZ" revision="Z00X" />
 </manifest>
