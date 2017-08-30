@@ -23,7 +23,7 @@
   <project name="LineageOS/android_device_asus_Z00A" path="device/asus/Z00A" remote="github" />
   <project name="LineageOS/android_device_asus_Z008" path="device/asus/Z008" remote="github" />
   <project name="nutcasev15/android_device_asus_mofd-common" path="device/asus/mofd-common" remote="github" revision="OPT" />
-  <project name="nutcasev15/Hololite" path="kernel/asus/moorefield" remote="github" revision="v4" />
+  <project name="nutcasev15/Hololite" path="kernel/asus/moorefield" remote="github" revision="v5" />
   <project name="TheMuppets/proprietary_vendor_asus" path="vendor/asus" remote="github" revision="cm-14.1" />
   <project name="LineageOS/android_packages_apps_FlipFlap" path="packages/apps/FlipFlap" remote="github" />
   <project name="LineageOS/android_packages_resources_devicesettings" path="packages/resources/devicesettings" remote="github" />
@@ -39,5 +39,6 @@
   <project path="packages/apps/Settings" name="nutcasev15/android_packages_apps_Settings" groups="pdk-fs" revision="OPT" />
   <project path="packages/apps/CMParts" name="nutcasev15/android_packages_apps_CMParts" groups="pdk-fs" revision="OPT" />
   <project path="packages/apps/ThemeInterfacer" name="substratum/interfacer" revision="n-rootless" />
+  <project path="packages/apps/Lawnchair" name="MoKee/android_packages_apps_Lawnchair" revision="mkn-mr1" />
   <project path="tools/IAZ" name="nutcasev15/IAZ" revision="Z00X" />
 </manifest>
