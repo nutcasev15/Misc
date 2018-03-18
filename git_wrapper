@@ -47,15 +47,26 @@ fi
 }
 
 git_patch(){
-if [[ -z "$1" ]] && [[ -z "$2" ]]
+if [[ -z "$1" ]] || [[ -z "$2" ]]
 then
-	printf "\nFunction requires the Remote URL & Commit's Full SHA ID\n"
+	printf "\nFunction requires the Github Repo URL & Full Commit SHA IDs\n"
 	return
 else
-	export S=$1
-	export ID=$2
-	curl -Ss https://github.com/"$S"/commit/"$ID".patch | git am -3
-	unset S ID
+	export URL=$1
+	shift 1
+	while true
+	do
+		if [[ -z "$1" ]] || [[ -f .git/rebase-apply ]]
+		then
+			break
+		else
+			export ID=$1
+			curl -Ss https://github.com/"$URL"/commit/"$ID".patch | git am -3
+			unset ID
+		fi
+		shift 1
+	done
+	unset URL
 	return
 fi
 }
@@ -211,7 +222,7 @@ printf "\n>  git_manifesto:\n"
 printf "Creates a Github Manifest for Repos in Current Directory\n"
 printf "\n >>>These Commands Affect Current Directory Only<<< \n"
 printf "\n>  git_patch:"
-printf "\nFunction requires the Remote URL & Commit's Full SHA ID\n"
+printf "\nFunction requires the Github Repo URL & Full Commit SHA IDs\n"
 printf "\n>  git_cherry:"
 printf "\nFunction requires Commit Chunks in <sha_start>^..<sha_end> Format\n"
 printf "\n>  git_show:"
