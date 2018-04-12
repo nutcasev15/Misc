@@ -1,0 +1,99 @@
+# /bin/bash
+make_call() {
+	make CFLAGS+="-O3 -mtune=intel -g" CXXFLAGS+="-O3 -mtune=intel -g" -j24
+	make CFLAGS+="-O3 -mtune=intel -g" CXXFLAGS+="-O3 -mtune=intel -g" install -j24
+	make check
+	clear
+}
+
+build_tc() {
+	if [[ "$(ls | grep -c src)" != "1" ]] && [[ "$(ls .. | grep -c sys)" != "1" ]]
+	then
+		printf "\nThis Directory Is Not Configured Properly \n"
+	else
+		clear
+		printf "\nAssuming All Tarballs Are Up To Date\n"
+		printf "Enter GCC Version Tag:/<>/:"
+		read VER
+		mkdir -p bin gcc new isl ppl cloog bn gb nw
+		git -C src/binutils-gdb pull
+		cp -avr src/binutils-gdb/. bin/.
+		tar -axvf src/gcc*.tar.* -C gcc --strip-components=1
+		tar -axvf src/new*.tar.* -C new --strip-components=1
+		tar -axvf src/isl*.tar.* -C isl --strip-components=1
+		tar -axvf src/cloog-ppl*.tar.* -C ppl --strip-components=1
+		tar -axvf src/cloog-0*.tar.* -C cloog --strip-components=1
+		cp -ar isl ppl cloog ./gcc
+		cp -ar isl ppl cloog ./bin
+		cp -ar isl ppl cloog ./new
+		rm -rf isl ppl cloog
+		clear
+		printf "\n\n ##### Compiling $VER ##### \n\n"
+		# Binutils
+		cd bn
+		../bin/configure --target=x86_64-linux-gnu  --with-tune=intel --with-gold --with-sim --with-gdb \
+		--with-isl --with-cloog --with-ppl --with-arch=x86-64 --with-fpmath=sse --enable-lto \
+		--enable-multilib-list=m32,mx32,m64 --enable-multiarch--enable-plugins  \
+		--program-transform-name='s&^&x86_64-linux-&' --with-sysroot=/ --with-isysroot=/home/dev/Stuff/sys \
+		--prefix=/home/dev/Stuff/TC
+		make_call
+		# GCC Build 0
+		cd ../gb
+		../gcc/configure --build=x86_64-linux-gnu --target=x86_64-linux-gnu --with-gcc-version="$VER" \
+		--disable-sjlj-exceptions --enable-gnu-unique-object --enable-linker-build-id --disable-libstdcxx-pch \
+		--enable-c99 --enable-clocale=gnu --enable-libstdcxx-debug --enable-long-long \
+		--enable-libstdcxx-time=yes --enable-gnu-indirect-function --with-isl --with-newlib --with-ppl \
+		--with-cloog --enable-linker-build-id --without-included-gettext --enable-clocale=gnu \
+		--disable-vtable-verify --enable-default-pie --with-system-zlib --with-target-system-zlib \
+		--enable-objc-gc=auto --disable-werror --enable-languages=c,c++ --enable-graphite=yes --enable-plugins \
+		--enable-gold=default --disable-option-checking --disable-bootstrap --enable-threads \
+		--enable-gnu-indirect-function --disable-libcilkrts --disable-libsanitizer --with-fpmath=sse \
+		--disable-nls --with-gnu-as --with-gnu-ld --enable-lto --enable-multiarch \
+		--with-diagnostics-color=always --enable-libatomic-ifuncs=no \
+		--with-host-libstdcxx='-static-libgcc -Wl,-Bstatic,-lstdc++,-Bdynamic -lm' \
+		"--enable-eh-frame-hdr-for-static" --enable-initfini-array \
+		--program-transform-name='s&^&x86_64-linux-&' --with-arch=x86-64 --with-tune=intel \
+		--enable-multilib-list=m32,mx32,m64 --enable-checking=yes --disable-libssp --disable-nls \
+		--disable-libmudflap --disable-libgomp --disable-libstdc__-v3 --disable-tls --disable-libitm \
+		--enable-libgomp --with-sysroot=/ --with-isysroot=/home/dev/Stuff/sys --with-python \
+		--prefix=/home/dev/Stuff/TC
+		make_call
+		# Newlib
+		cd ../nw
+		../new/configure --target=x86_64-linux-gnu  --with-tune=intel --with-gold --with-sim --with-gdb \
+		--with-isl --with-cloog --with-ppl --with-arch=x86-64 --with-fpmath=sse --enable-lto \
+		--enable-multilib-list=m32,mx32,m64 --enable-multiarch--enable-plugins  \
+		--program-transform-name='s&^&x86_64-linux-&' --with-sysroot=/ --with-isysroot=/home/dev/Stuff/sys \
+		--prefix=/home/dev/Stuff/TC
+		make_call
+		# GCC Build 1
+		cd ../gb
+		rm -rf *
+		../gcc/configure --build=x86_64-linux-gnu --target=x86_64-linux-gnu --with-gcc-version="$VER" \
+		--disable-sjlj-exceptions --enable-gnu-unique-object --enable-linker-build-id --disable-libstdcxx-pch \
+		--enable-c99 --enable-clocale=gnu --enable-libstdcxx-debug --enable-long-long \
+		--enable-libstdcxx-time=yes --enable-gnu-indirect-function --with-isl --with-newlib --with-ppl \
+		--with-cloog --enable-linker-build-id --without-included-gettext --enable-clocale=gnu \
+		--disable-vtable-verify --enable-default-pie --with-system-zlib --with-target-system-zlib \
+		--enable-objc-gc=auto --disable-werror --enable-languages=c,c++ --enable-graphite=yes --enable-plugins \
+		--enable-gold=default --disable-option-checking --disable-bootstrap --enable-threads \
+		--enable-gnu-indirect-function --disable-libcilkrts --disable-libsanitizer --with-fpmath=sse \
+		--disable-nls --with-gnu-as --with-gnu-ld --enable-lto --enable-multiarch \
+		--with-diagnostics-color=always --enable-libatomic-ifuncs=no \
+		--with-host-libstdcxx='-static-libgcc -Wl,-Bstatic,-lstdc++,-Bdynamic -lm' \
+		"--enable-eh-frame-hdr-for-static" --enable-initfini-array \
+		--program-transform-name='s&^&x86_64-linux-&' --with-arch=x86-64 --with-tune=intel \
+		--enable-multilib-list=m32,mx32,m64 --enable-checking=yes --disable-libssp --disable-nls \
+		--disable-libmudflap --disable-libgomp --disable-libstdc__-v3 --disable-tls --disable-libitm \
+		--enable-libgomp --with-sysroot=/ --with-isysroot=/home/dev/Stuff/sys --with-python \
+		--prefix=/home/dev/Stuff/TC
+		make_call
+		# Cleanup
+		cd ..
+		rm -rf gcc new bin gb nw bn
+		unset VER
+		clear
+		printf "\n\n ##### Done ##### \n\n"
+	fi
+}
+
