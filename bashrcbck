@@ -118,16 +118,18 @@ fi
 if [ $TILIX_ID ] || [ $VTE_VERSION ] ; then source /etc/profile.d/vte.sh; fi # Ubuntu Budgie END
 
 # Custom Commands
-ccache -F 0 && ccache -M 35
+ccache -F 0 && ccache -M 15
 export USE_CCACHE=1
 export CCACHE_DIR=~/.ccache
 export I_WANT_A_QUAIL_STAR=true
 export USE_NINJA=false
+export LC_ALL=C
 export ANDROID_JACK_VM_ARGS="-Xmx4608m -Dfile.encoding=UTF-8 -XX:+TieredCompilation"
+export SERVER_NB_COMPILE=4
 export ARCH=x86_64
 export CROSS_COMPILE_I=x86_64-linux-
 export CROSS_COMPILE=$CROSS_COMPILE_I
-export JAVA_HOME=/usr/lib/jvm/java-9-openjdk-amd64
+export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
 export PATH=/usr/lib/ccache:~/Stuff/TC/bin:$JAVA_HOME/bin:$PATH
 source ~/Stuff/guides/git_wrapper
 history -wc
@@ -166,10 +168,32 @@ fi
 return
 }
 
+build_IAZ() {
+if [[ -z "$1" ]]
+then
+    printf "\nNo Target Device For Apps\n\n"
+else
+    rm -rf out
+    mkdir out
+    echo 1 > out/syncsave
+    if [[ "$(ls ~ | grep -qc "ftp")" == "0" ]]
+    then
+        mkdir ~/ftp
+    fi
+    . build/envsetup.sh
+    breakfast $1
+    ./tools/IAZ/IAZ
+    ./tools/IAZ/IAZ MLA
+    ./prebuilts/sdk/tools/jack-admin stop-server
+fi
+return
+}
+
 upload_rom() {
 if [[ "$(ls ~ | grep -qc "ftp")" != "0" ]]
 then
     export CUR=$PWD
+    mkdir -p ~/ftp
     cd ~/ftp
     if [[ -z "$1" ]]
     then
