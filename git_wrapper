@@ -22,7 +22,7 @@ else
 	then
 		ssh-add
 	fi
-	find .  -maxdepth $FDEPTH -type d -name .git -execdir bash -c 'git fetch $R && git checkout -qf $L && git rebase $R/$RB' ';'
+	find .  -maxdepth $FDEPTH -type d -name .git -execdir bash -c 'echo -e "\n" && basename $PWD && git fetch $R && git checkout -qf $L && git rebase $R/$RB' ';'
 	if [[ -z "$WSI" ]]
 	then 
 		ssh-add -d
@@ -50,7 +50,7 @@ else
 	then
 		ssh-add
 	fi
-	find .  -maxdepth $FDEPTH -type d -name .git -execdir bash -c 'git fetch $R && git checkout -qf $R/$RB && git checkout -fB $L' ';'
+	find .  -maxdepth $FDEPTH -type d -name .git -execdir bash -c 'echo -e "\n" && basename $PWD && git fetch $R && git checkout -qf $R/$RB && git checkout -fB $L' ';'
 	if [[ -z "$WSI" ]]
 	then 
 		ssh-add -d
@@ -141,7 +141,7 @@ else
 		ssh-add
 	fi
 	printf "\nChecking Out $B\n"
-	find .  -maxdepth $FDEPTH -type d -name .git -execdir bash -c 'git checkout -fq $B && git push -fu $R $B' ';'
+	find .  -maxdepth $FDEPTH -type d -name .git -execdir bash -c 'echo -e "\n" && basename $PWD && git checkout -fq $B && git push -fu $R $B' ';'
 	if [[ -z "$WSI" ]]
 	then 
 		ssh-add -d
@@ -160,7 +160,7 @@ then
 else
 	export B=$1
 	printf "\nChecking Out $B\n"
-	find .  -maxdepth $FDEPTH -type d -name .git -execdir bash -c 'git checkout $B' ';'
+	find .  -maxdepth $FDEPTH -type d -name .git -execdir bash -c 'echo -e "\n" && basename $PWD && git checkout $B' ';'
 	printf "\nDone\n"
 	unset B
 	return
@@ -175,7 +175,7 @@ then
 elif [[ -z "$2" ]]
 then
 	export C=$1
-	find .  -maxdepth $FDEPTH -type d -name .git -execdir bash -c '$C' ';'
+	find .  -maxdepth $FDEPTH -type d -name .git -execdir bash -c 'echo -e "\n" && basename $PWD && $C' ';'
 	printf "\nDone\n"
 	unset C
 	return
