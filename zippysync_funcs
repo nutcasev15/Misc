@@ -1,0 +1,86 @@
+# /bin/bash
+# Script to Batch Download ZippyShare Links
+
+# Dependancy Check at Include
+DEP_LIST='bc curl wget'
+type $DEP_LIST >/dev/null 2>&1
+if [[ "$?" == "1" ]]
+then
+	printf "These Functions Require $DEP_LIST & other GNU Core Utils. Please Install Them. Exiting..\n"
+	unset DEP_LIST
+	return 1
+fi
+unset DEP_LIST
+
+# Functions
+parse_and_download() {
+export ORI=$1
+export URL="$(echo $ORI | cut -d "/" -f3)"
+export PR_STR="$(echo $ORI | cut -d "/" -f5)"
+export ORI_SRC="$(curl -Ss "https://$URL/v/$PR_STR/file.html" | grep dlbutton\'\).href)"
+export F_LINK="https://$URL/d/$PR_STR/$(echo "0 $(echo $ORI_SRC | cut -d "\"" -f3) 0" | bc)$(echo $ORI_SRC | cut -d "\"" -f4)"
+wget -c "$F_LINK"
+export WGET_RET_CODE=$?
+unset ORI URL PR_STR ORI_SRC F_LINK
+return
+}
+
+zippy_sync() {
+if [[ -z "$1" ]]
+then
+	printf "Command Requires File Links\n"
+else
+	while true
+	do
+		if [[ -z "$1" ]]
+		then
+			break
+		else
+			if [[ ! -z "$WGET_RET_CODE" ]]
+			then
+				unset WGET_RET_CODE
+			fi
+
+			parse_and_download "$1"
+
+			if [[ "$WGET_RET_CODE" -gt "3" ]]
+			then
+				parse_and_download "$1"
+			fi
+
+			# Retry Only Once
+			if [[ "$WGET_RET_CODE" -gt "3" ]]
+			then
+				printf "\n $1 Failed \n\n"
+				break
+			fi
+
+			printf "\n $1 Download Complete\n\n"
+		fi
+	shift 1
+	done
+fi
+return
+}
+
+zippy_list_sync() {
+if [[ ! -f "$1" ]]
+then
+	printf "Command Requires A File List\n"
+else
+	unset LINK_CHAIN
+	# Parse Links
+	while IFS='' read -ru 25 ln || [[ -n "$ln" ]]
+	do
+		if [[ "$(echo $ln | grep -oe 'zippyshare.com/v/' -oe 'file.html' | wc -l)" == "2" ]]
+		then
+			LINK_CHAIN="$LINK_CHAIN $(echo $ln | tr -d [:blank:])"
+		fi
+	done 25<$1
+
+	# Sync The Files
+	zippy_sync $LINK_CHAIN
+	unset LINK_CHAIN
+fi
+return
+}
