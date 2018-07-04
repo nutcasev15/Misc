@@ -2,16 +2,11 @@
 <manifest>
   <remove-project name="LineageOS/android_vendor_lineage" />
   <remove-project name="LineageOS/android_system_core" />
-  <remove-project name="platform/hardware/intel/audio_media"/>
-  <remove-project name="platform/hardware/intel/bootstub"/>
-  <remove-project name="platform/hardware/intel/common/bd_prov"/>
   <remove-project name="platform/hardware/intel/common/libmix"/>
-  <remove-project name="platform/hardware/intel/common/libstagefrighthw"/>
   <remove-project name="platform/hardware/intel/common/libva"/>
   <remove-project name="platform/hardware/intel/common/libwsbm"/>
   <remove-project name="platform/hardware/intel/common/omx-components"/>
   <remove-project name="platform/hardware/intel/common/utils"/>
-  <remove-project name="platform/hardware/intel/common/wrs_omxil_core"/>
   <remove-project name="platform/hardware/intel/img/hwcomposer"/>
   <remove-project name="platform/hardware/intel/img/psb_headers"/>
   <remove-project name="platform/hardware/intel/img/psb_video"/>
@@ -25,18 +20,13 @@
   <project name="LineageOS/android_packages_resources_devicesettings" path="packages/resources/devicesettings" remote="github" />
   <project name="nutcasev15/android_vendor_lineage" path="vendor/lineage" remote="github" revision="ZF2" />
   <project name="nutcasev15/android_system_core" path="system/core" remote="github" revision="ZF2" />
-  <project name="nutcasev15/android_hardware_intel_common_libmix" path="hardware/intel/common/libmix" remote="github" revision="ZF2" />
-  <project name="nutcasev15/android_hardware_intel_common_libstagefrighthw" path="hardware/intel/common/libstagefrighthw" remote="github" revision="ZF2" />
-  <project name="nutcasev15/android_hardware_intel_common_libva" path="hardware/intel/common/libva" remote="github" revision="ZF2" />
-  <project name="nutcasev15/android_hardware_intel_common_libwsbm" path="hardware/intel/common/libwsbm" remote="github" revision="ZF2" />
-  <project name="nutcasev15/android_hardware_intel_common_omx-components" path="hardware/intel/common/omx-components" remote="github" revision="ZF2" />
-  <project name="nutcasev15/android_hardware_intel_common_utils" path="hardware/intel/common/utils" remote="github" revision="ZF2" />
-  <project name="nutcasev15/android_hardware_intel_img_hwcomposer" path="hardware/intel/img/hwcomposer" remote="github" revision="ZF2" />
-  <project name="nutcasev15/android_hardware_intel_img_psb_headers" path="hardware/intel/img/psb_headers" remote="github" revision="ZF2" />
-  <project name="nutcasev15/android_hardware_intel_img_psb_video" path="hardware/intel/img/psb_video" remote="github" revision="ZF2" />
-  <project path="hardware/intel/audio_media" name="platform/hardware/intel/audio_media" groups="intel,pdk" remote="aosp" revision="refs/tags/android-7.1.2_r36" />
-  <project path="hardware/intel/bootstub" name="platform/hardware/intel/bootstub" groups="intel,pdk" remote="aosp" revision="refs/tags/android-7.1.2_r36" />
-  <project path="hardware/intel/common/bd_prov" name="platform/hardware/intel/common/bd_prov" groups="intel,pdk" remote="aosp" revision="refs/tags/android-7.1.2_r36" />
-  <project path="hardware/intel/common/wrs_omxil_core" name="platform/hardware/intel/common/wrs_omxil_core" groups="intel,pdk" remote="aosp" revision="refs/tags/android-7.1.2_r36" />
+  <project name="nutcasev15/android_hardware_intel_common_libmix" path="hardware/intel/common/libmix" remote="github" revision="AOSP8.1" />
+  <project name="nutcasev15/android_hardware_intel_common_libva" path="hardware/intel/common/libva" remote="github" revision="AOSP8.1" />
+  <project name="nutcasev15/android_hardware_intel_common_libwsbm" path="hardware/intel/common/libwsbm" remote="github" revision="AOSP8.1" />
+  <project name="nutcasev15/android_hardware_intel_common_omx-components" path="hardware/intel/common/omx-components" remote="github" revision="AOSP8.1" />
+  <project name="nutcasev15/android_hardware_intel_common_utils" path="hardware/intel/common/utils" remote="github" revision="AOSP8.1" />
+  <project name="nutcasev15/android_hardware_intel_img_hwcomposer" path="hardware/intel/img/hwcomposer" remote="github" revision="AOSP8.1" />
+  <project name="nutcasev15/android_hardware_intel_img_psb_headers" path="hardware/intel/img/psb_headers" remote="github" revision="AOSP8.1" />
+  <project name="nutcasev15/android_hardware_intel_img_psb_video" path="hardware/intel/img/psb_video" remote="github" revision="AOSP8.1" />
 
 </manifest>
