@@ -13,13 +13,13 @@
 
   <project name="nutcasev15/android_device_asus_Z00A" path="device/asus/Z00A" remote="github" revision="ZF2" />
   <project name="nutcasev15/android_device_asus_Z008" path="device/asus/Z008" remote="github" revision="ZF2" />
-  <project name="nutcasev15/android_device_asus_mofd-common" path="device/asus/mofd-common" remote="github" revision="ZF2" />
+  <project name="nutcasev15/android_device_asus_mofd-common" path="device/asus/mofd-common" remote="github" revision="8.1" />
   <project name="nutcasev15/Hololite" path="kernel/asus/moorefield" remote="github" revision="O" />
   <project name="jrior001/proprietary_vendor_asus" path="vendor/asus" remote="github" revision="lineage-15.0" />
   <project name="LineageOS/android_packages_apps_FlipFlap" path="packages/apps/FlipFlap" remote="github" />
   <project name="LineageOS/android_packages_resources_devicesettings" path="packages/resources/devicesettings" remote="github" />
-  <project name="nutcasev15/android_vendor_lineage" path="vendor/lineage" remote="github" revision="ZF2" />
-  <project name="nutcasev15/android_system_core" path="system/core" remote="github" revision="ZF2" />
+  <project name="nutcasev15/android_vendor_lineage" path="vendor/lineage" remote="github" revision="8.1" />
+  <project name="nutcasev15/android_system_core" path="system/core" remote="github" revision="8.1" />
   <project name="nutcasev15/android_hardware_intel_common_libmix" path="hardware/intel/common/libmix" remote="github" revision="AOSP8.1" />
   <project name="nutcasev15/android_hardware_intel_common_libva" path="hardware/intel/common/libva" remote="github" revision="AOSP8.1" />
   <project name="nutcasev15/android_hardware_intel_common_libwsbm" path="hardware/intel/common/libwsbm" remote="github" revision="AOSP8.1" />
