@@ -2,7 +2,7 @@
 # Script to Batch Download ZippyShare Links
 
 # Dependancy Check at Include
-DEP_LIST='bc curl wget'
+export DEP_LIST='bc curl wget'
 type $DEP_LIST >/dev/null 2>&1
 if [[ "$?" == "1" ]]
 then
@@ -25,11 +25,13 @@ unset ORI URL PR_STR ORI_SRC F_LINK
 return
 }
 
-zippy_sync() {
+zippy_link_sync() {
 if [[ -z "$1" ]]
 then
 	printf "Command Requires File Links\n"
 else
+	export NUM_LINKS=$#
+	export NUM_CUR_LINK=1
 	while true
 	do
 		if [[ -z "$1" ]]
@@ -45,28 +47,31 @@ else
 
 			if [[ "$WGET_RET_CODE" -gt "3" ]]
 			then
+				sleep 120
 				parse_and_download "$1"
 			fi
 
 			# Retry Only Once
 			if [[ "$WGET_RET_CODE" -gt "3" ]]
 			then
-				printf "\n $1 Failed \n\n"
+				printf "\n [$NUM_CUR_LINK/$NUM_LINKS] $1 Failed \n\n"
 				break
 			fi
 
-			printf "\n $1 Download Complete\n\n"
+			printf "\n [$NUM_CUR_LINK/$NUM_LINKS] $1 Download Complete \n\n"
 		fi
 	shift 1
+	export NUM_CUR_LINK=$(($NUM_CUR_LINK + 1))
 	done
 fi
+unset NUM_LINKS NUM_CUR_LINK
 return
 }
 
-zippy_list_sync() {
+zippy_sync() {
 if [[ ! -f "$1" ]]
 then
-	printf "Command Requires A File List\n"
+	printf "Command Requires A File Containing Links\n"
 else
 	unset LINK_CHAIN
 	# Parse Links
@@ -79,7 +84,7 @@ else
 	done 25<$1
 
 	# Sync The Files
-	zippy_sync $LINK_CHAIN
+	zippy_link_sync $LINK_CHAIN
 	unset LINK_CHAIN
 fi
 return

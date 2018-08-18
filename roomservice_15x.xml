@@ -15,7 +15,7 @@
   <project name="nutcasev15/android_device_asus_Z008" path="device/asus/Z008" remote="github" revision="ZF2" />
   <project name="nutcasev15/android_device_asus_mofd-common" path="device/asus/mofd-common" remote="github" revision="8.1" />
   <project name="nutcasev15/Hololite" path="kernel/asus/moorefield" remote="github" revision="O" />
-  <project name="jrior001/proprietary_vendor_asus" path="vendor/asus" remote="github" revision="lineage-15.0" />
+  <project name="nutcasev15/proprietary_vendor_asus" path="vendor/asus" remote="github" revision="8.1" />
   <project name="LineageOS/android_packages_apps_FlipFlap" path="packages/apps/FlipFlap" remote="github" />
   <project name="LineageOS/android_packages_resources_devicesettings" path="packages/resources/devicesettings" remote="github" />
   <project name="nutcasev15/android_vendor_lineage" path="vendor/lineage" remote="github" revision="8.1" />
