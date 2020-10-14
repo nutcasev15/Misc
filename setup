@@ -2,18 +2,12 @@
 # Important Commands to execute:
 # a).bashrc setup
 # b) don't forget to install amd64 versions of 32 bit libs
-#Then do these:
+# Then do these:
 #
-#Build prerequisites:
+# Setup CLI Software:
 sudo apt-get update
 sudo apt-get -y upgrade
-sudo apt-get -y install git subversion libmpc-dev libmpfr-dev libgmp-dev python-dev texinfo libisl-dev repo \
-automake perl git gnupg flex bison gperf build-essential \
-zip curl zlib1g-dev gcc-multilib g++-multilib libc6-dev libtool autogen pigz \
-lib32ncurses5-dev x11proto-core-dev libx11-dev ccache liblz4-tool \
-libgl1-mesa-dev libxml2-utils xsltproc unzip openjdk-8-jre openjdk-8-jdk openjdk-8-jre-headless \
-openjdk-8-jdk-headless pigz gdb pngcrush schedtool squashfs-tools readline-common lib32z1-dev \
-android-headers yasm
+sudo apt-get -y install git python-dev gnupg zip curl unzip pigz libxml2-utils
 if [[ -e bashrcbck ]];
 then
 	echo "Setting .bashrc"
